@@ -246,10 +246,10 @@ static int my_gethostname(char *n, size_t l){
     _interpose_##_orig __attribute__((section("__DATA,__interpose"))) = \
     { (const void *)(unsigned long)&_rep, (const void *)(unsigned long)&_orig };
 
-// DYLD_INTERPOSE(my_uname, uname)
-// DYLD_INTERPOSE(my_sysctlbyname, sysctlbyname)
-//DYLD_INTERPOSE(my_sysctl, sysctl)
-// DYLD_INTERPOSE(my_gethostname, gethostname)
+ DYLD_INTERPOSE(my_uname, uname)
+ DYLD_INTERPOSE(my_sysctlbyname, sysctlbyname)
+ DYLD_INTERPOSE(my_sysctl, sysctl)
+ DYLD_INTERPOSE(my_gethostname, gethostname)
 
 #pragma mark - Instalación
 
