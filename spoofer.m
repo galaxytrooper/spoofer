@@ -246,17 +246,17 @@ static int my_gethostname(char *n, size_t l){
     _interpose_##_orig __attribute__((section("__DATA,__interpose"))) = \
     { (const void *)(unsigned long)&_rep, (const void *)(unsigned long)&_orig };
 
-DYLD_INTERPOSE(my_uname, uname)
-DYLD_INTERPOSE(my_sysctlbyname, sysctlbyname)
-DYLD_INTERPOSE(my_sysctl, sysctl)
-DYLD_INTERPOSE(my_gethostname, gethostname)
+// DYLD_INTERPOSE(my_uname, uname)
+// DYLD_INTERPOSE(my_sysctlbyname, sysctlbyname)
+//DYLD_INTERPOSE(my_sysctl, sysctl)
+// DYLD_INTERPOSE(my_gethostname, gethostname)
 
 #pragma mark - Instalación
 
 __attribute__((constructor)) static void spooflite_init(void){
     gLock = [NSObject new];
 
-    struct utsname u; if (uname(&u)==0) gRealMachine = [NSString stringWithUTF8String:u.machine];
+   // struct utsname u; if (uname(&u)==0) gRealMachine = [NSString stringWithUTF8String:u.machine];
 
     swizI([UIDevice class], @selector(identifierForVendor), @selector(sl_identifierForVendor));
     swizI([UIDevice class], @selector(name),               @selector(sl_name));
